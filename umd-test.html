@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Simple browser side test of UMD module 
+	 See README.md for explanation
+	 M A Chatterje (c) 2018
+-->
+
+<head>
+<style>
+body {
+	margin : 3%;
+	font-family: sans-serif;
+}
+</style>
+<script src="./jsumd.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>Simple UMD Test (Browser side)</h2>
+	<br>
+	<div id="testArea"></div>
+
+	<script type="text/javascript">
+	var s=""
+	
+	var s = "myModule = " +  (typeof myModule).toString() + "<br>" ;
+	s+= (typeof myModule != "undefined" && typeof myModule != null) ? Object.keys(myModule).map(x=>"-->member: " + x  + "("+typeof x+")").join("<br>") : "";
+	
+	s+="<br><br>";
+
+	s+="myModule.a() returns " + myModule.a();
+	s+="<br><br>";
+	s+="myModule.b() returns " + myModule.b();
+	s+="<br><br>";
+	document.getElementById("testArea").innerHTML = s;
+	</script>
+</body>
+</html>
