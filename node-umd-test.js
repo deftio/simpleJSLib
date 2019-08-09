@@ -5,7 +5,7 @@ var x = require ("./jsumd.js"); //this is to assign your module to the var x for
 console.log("running module test...");
 
 console.log("our module has the following keys (visible properties):");
-console.log("\n" + Object.keys(x).map(function(z){return z.toString()+" : "+ typeof(z)}).join("\n"));
+console.log("\n" + Object.keys(x).map(function(z){return z.toString()+" : "+ typeof(x[z])}).join("\n"));
 
 console.log("\nsimple tests:");
 console.log("x.a returns "+x.a());
