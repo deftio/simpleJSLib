@@ -1,11 +1,12 @@
 
 # Javascript UMD working example
 
-This repo contains a working example of a simple UMD javascript library which exports correctly on both nodejs and <web> without need for a build tool.  Useful for quick n dirty jobs.
+This repo contains a working example of a simple UMD javascript library which exports correctly on both nodejs and web without need for a build/packing tool.  Useful for quick n dirty jobs. Based in the UMD univeral module definition.
 
 ## Usage
 
 Using the file jsumd.js as a template define your module here:
+
 ```javascript
 //see jsumd.js in this repo
 
@@ -13,16 +14,15 @@ Using the file jsumd.js as a template define your module here:
 
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        //console.log("AMD")
+        //console.log("AMD") 
         define([], factory);
     } else if (typeof exports === 'object') {
         
         if ((typeof module !== 'object' ) || (typeof module !== "function") ) // this hack required for older versions of node
             var m =require('module');
         // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        //console.log("node...");
+        // only CommonJS-like environments that support module.exports, like Node.
+        //console.log(" CommonJS ...");
         var lib= factory();
         module.exports=lib;
 
@@ -32,7 +32,7 @@ Using the file jsumd.js as a template define your module here:
         var lib = factory();
         root[lib["exportName"]] = lib;
   }
-//end of "boilerplate" ======
+//end of "boilerplate" ====== below is where the real library code is written
 }(typeof self !== 'undefined' ? self : this, function ( /* dependancies go here, eg. lib1, $, ... ,  */) {
     "use strict";
     
@@ -62,16 +62,64 @@ myModule.simpleMethod()  // calls function simpleMethod in myModule
 </script>
 ```
 
-And in nodejs do this:
+And in nodejs do this (using built-in require)
 ```javascript
 
 var x = require ("./jsumd.js"); //this is to assign your module to the var x for usage in node
 x.simpleMethod();  // calls simpleMethod in your node js code
 
 ```
- 
-### License yada
-BSD 2.0 License (see file in repo)
 
-Good luck!
+And if using AMD style definitions (see [requirejs.org](requirejs.org) ) use this
+```javascript
+
+var requirejs = require("./path/to/requirejs/r.js"); // this is to load the AMD style loader from requirejs (see requirejs.org)
+
+requirejs.config({
+    //Pass the top-level main.js/index.js require
+    //function to requirejs so that node modules
+    //are loaded relative to the top-level JS file.
+    nodeRequire: require
+});
+
+requirejs (["path/to/your/library/jsumd.js"]); // note jsumd is just what the example is named here.  It should be whatever your actual library is called.
+
+var x=requirejs("jsumd"); // requirejs uses the filename given above as the object name 
+
+x.simpleMethod();  // calls simpleMethod
+```
+
+### Testing
+
+In the repo are 3 crude tests:
+```
+umdtest.html        - a simple web page loading the example module - just load in any browser 
+node-cjs-test.js    - a simple nodejs app using built-in require (commonjs format)
+node-amd-test.js    - a simple console nodejs app using AMD style requirejs loading
+```
+
+to use the nodejs tests either type your local invocation of node such as:
+
+```
+node node-cjs-test.js
+```
+
+or on POSIX systems you can just run them directly (assuming nodejs is installed)
+
+```
+./node-cjs-test.js   // this uses the built-in shebang 
+```
+
+
+
+### Why?
+
+Had issues with finding simple examples for basic bare-bones js library defitions.   This example should work without any reliance on a larger build framework/packer for quick testing.
+
+Goog luck & feedback welcome
+
 -Manu
+
+### License yada yada
+
+BSD 2.0 License (see file in repo)

@@ -5,7 +5,7 @@
 
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        //console.log("AMD")
+        
         define([], factory);
     } else if (typeof exports === 'object') {
         
