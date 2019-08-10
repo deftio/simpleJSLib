@@ -1,14 +1,14 @@
 
-# Javascript UMD working example
+# Simple JS Lib: A Javscript UMD working example
 
-This repo contains a working example of a simple UMD javascript library which exports correctly on both nodejs and web without need for a build/packing tool.  Useful for quick n dirty jobs. Based in the UMD univeral module definition.
+This repo contains a working example of a simple "universal" javascript library which exports correctly on commonjs (nodejs), requirejs, and web-browser environments without need for a build/packing tool.  Useful for quick n dirty jobs. Based in the UMD univeral module definition.
 
 ## Usage
 
-Using the file jsumd.js as a template define your module here:
+Using the file simpleJSlib.js as a template define your module here:
 
 ```javascript
-//see jsumd.js in this repo
+//see simpleJSlib.js in this repo
 
 (function (root, factory) {
 
@@ -55,7 +55,7 @@ Using the file jsumd.js as a template define your module here:
 Now in the browser simply include a tag like this:
 ```HTML
 
-<script src="./jsumd.js" type="text/javascript"></script>
+<script src="./simpleJSlib.js" type="text/javascript"></script>
 <script>
 //use your library with the name you gave in in the export name line...
 myModule.simpleMethod()  // calls function simpleMethod in myModule
@@ -65,7 +65,7 @@ myModule.simpleMethod()  // calls function simpleMethod in myModule
 And in nodejs do this (using built-in require)
 ```javascript
 
-var x = require ("./jsumd.js"); //this is to assign your module to the var x for usage in node
+var x = require ("./simpleJSlib.js"); //this is to assign your module to the var x for usage in node
 x.simpleMethod();  // calls simpleMethod in your node js code
 
 ```
@@ -82,7 +82,7 @@ requirejs.config({
     nodeRequire: require
 });
 
-requirejs (["path/to/your/library/jsumd.js"]); // note jsumd is just what the example is named here.  It should be whatever your actual library is called.
+requirejs (["path/to/your/library/simpleJSlib.js"]); // note jsumd is just what the example is named here.  It should be whatever your actual library is called.
 
 var x=requirejs("jsumd"); // requirejs uses the filename given above as the object name 
 

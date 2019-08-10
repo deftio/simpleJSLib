@@ -13,9 +13,9 @@ requirejs.config({
     nodeRequire: require
 });
 
-requirejs (["jsumd.js"]); //this is to assign your module to the var x for usage in node
+requirejs (["simpleJSLib.js"]); //this is to assign your module to the var x for usage in node
 
-var x=requirejs("jsumd");
+var x=requirejs("simpleJSLib");
 
 console.log("running module test...");
 
