@@ -1,7 +1,9 @@
 
-# Simple JS Lib: A Javscript UMD working example
+# Simple JS Lib: A Javascript UMD working example
 
-This repo contains a working example of a simple "universal" javascript library which exports correctly on commonjs (nodejs), requirejs, and web-browser environments without need for a build/packing tool.  Useful for quick n dirty jobs. Based in the UMD univeral module definition.
+This repo contains a working example of a simple "universal" javascript library which exports correctly on commonjs (nodejs), requirejs, and web-browser environments without need for a build/packing tool.  This allows properly written js code to work in both browser and console apps.
+
+Useful for quick n dirty jobs. Based in the UMD univeral module definition.
 
 ## Usage
 
