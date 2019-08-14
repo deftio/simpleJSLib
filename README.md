@@ -1,9 +1,9 @@
 
-# Simple JS Lib: A Javascript UMD working example
+# Simple JS Lib: A portable Javascript library working example based on the UMD (Universal Module Defition)
 
 This repo contains a working example of a simple "universal" javascript library which exports correctly on commonjs (nodejs), requirejs, and web-browser environments without need for a build/packing tool.  This allows properly written js code to work in both browser and console apps.
 
-Useful for quick n dirty jobs. Based in the UMD univeral module definition.
+Useful for quick n dirty jobs. Based on the UMD univeral module definition.
 
 ## Usage
 
@@ -86,7 +86,7 @@ requirejs.config({
 
 requirejs (["path/to/your/library/simpleJSlib.js"]); // note jsumd is just what the example is named here.  It should be whatever your actual library is called.
 
-var x=requirejs("jsumd"); // requirejs uses the filename given above as the object name 
+var x=requirejs("simpleJSLib"); // requirejs uses the filename given above as the object name 
 
 x.simpleMethod();  // calls simpleMethod
 ```
@@ -112,6 +112,30 @@ or on POSIX systems you can just run them directly (assuming nodejs is installed
 ./node-cjs-test.js   // this uses the built-in shebang 
 ```
 
+
+### NPM and Publshing
+If you wish to make your library available to the NPM universe, install npm and the follow these commands.
+
+```shell
+npm init
+```
+
+npm will prompt you for several items and create a package.json file.  Once this is complete you can add dependancies using npm commands.  If you do plan on publising your libray be sure to check to make sure you have chosen a unique name in the npm universe.  You can search it as [npmjs](https://www.npmjs.com/).
+
+Now when you are all ready to publish it just use this command and npm will push it to the npm servers and host it.
+
+```shell
+npm publish
+```
+
+### CDN
+npm also provides a free CDN (Content Delivery Network) so you can use your new library.  You can reade more about it here: [unpkg](https://unpkg.com).  
+
+Just including the name like this in your HTML code:
+
+```html
+<script src="https://unpkg.com/your-library-name"></src>
+```
 
 
 ### Why?
