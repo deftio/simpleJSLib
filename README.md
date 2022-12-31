@@ -1,5 +1,5 @@
 
-# Simple JS Lib: A portable Javascript library working example based on the UMD (Universal Module Defition)
+# Simple JS Lib: A Javascript library working example based on the UMD (Universal Module Defition) with ES6 import support.
 
 This repo contains a working example of a simple "universal" javascript library which exports correctly on commonjs (nodejs), requirejs, and web-browser environments without need for a build/packing tool.  This allows properly written js code to work in both browser and console apps.
 
