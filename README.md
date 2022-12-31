@@ -93,7 +93,7 @@ x.simpleMethod();  // calls simpleMethod
 
 ### Testing
 
-In the repo are 3 crude tests:
+In the repo are 4 crude tests:
 ```
 umdtest.html        - a simple web page loading the example module - just load in any browser 
 node-cjs-test.js    - a simple nodejs app using built-in require (commonjs format)
@@ -111,6 +111,21 @@ or on POSIX systems you can just run them directly (assuming nodejs is installed
 ```
 ./node-cjs-test.js   // this uses the built-in shebang 
 ```
+
+### ES Module Support
+the Javascript ES6 module format came after the UMD, AMD and require convetions.  It allows one to create reusable code that can be tree-shaken (means redundant or unused code is removed in most applications).
+
+To support building a library with ES support a package generator such as rollup or webpack is receommended. However we can convert our simple library to module format by using putting our code in the format as shown in [./ES_import_support](ES_import_support).
+
+Here a simple tool copies our code from our UMD code and exports as a default export for use with javascript import support.
+
+To do this run the command line too in the folder:
+```javscript
+./umd2ModuleHack.js
+```
+It will cut out the code in the library and export it as importable module.  Note this is not the ideal way to create a module but it does allow a quick port of old UMD style projects.
+
+For this to work a package.json informing node.js to support imports as modules is needed.
 
 
 ### NPM and Publshing
